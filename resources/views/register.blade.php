@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ログイン</title>
   <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/signin.css') }}">
@@ -14,33 +13,19 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <body>
-  <form class="form-signin" method="post" action="{{ route('postLogin')}}">
+  <form class="form-signin" method="post" action="{{ route('postRegister')}}">
     @csrf
-  <h1 class="h3 mb-3 font-weight-normal">ログイン</h1>
+  <h1 class="h3 mb-3 font-weight-normal">会員登録</h1>
   @foreach ($errors->all() as $error)
       <ul class="alert alert-danger">
         <li>{{ $error }}</li>
       </ul>
   @endforeach
-  @if(session('login_error'))
-      <div class="alert alert-danger">
-          {{session('login_error')}}
-      </div>
-  @endif
-  @if(session('logout'))
-      <div class="alert alert-danger">
-          {{session('logout')}}
-      </div>
-  @endif
-
-
-
-
-  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="name" id="inputName" class="form-control" name="name" placeholder="名前" autofocus>
   <input type="email" id="inputEmail" class="form-control" name="email" placeholder="メールアドレス" autofocus>
-  <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" id="inputPassword" class="form-control" name="password" placeholder="パスワード">
-  <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+  <input type="password" id="inputConfirmPassword" class="form-control" name="confirm-password" placeholder="確認用パスワード">
+  <button class="btn btn-lg btn-primary btn-block" type="submit">新規登録</button>
 </form>
 
 </body>
