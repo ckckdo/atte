@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/signin.css') }}">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body>
+        <div class="min-w-full min-h-screen bg-gray-100">
 
             <!-- Page Heading -->
             <header>
@@ -22,7 +22,7 @@
             </header>
 
             <!-- Page Content -->
-            <main>
+            <main class="w-full bg-gray-100 my-5 flex-1">
                 @yield('content')
             </main>
             <!-- Page Footing -->

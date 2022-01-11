@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\RestController;
+
 
 
 /*
@@ -25,6 +27,11 @@ use App\Http\Controllers\AttendanceController;
     Route::group(['middleware'=>['auth']],function(){
         Route::get('/',[AttendanceController::class,'getIndex'])->name('getIndex');
         Route::post('/logout',[AuthController::class,'postLogout'])->name('postLogout');
+        Route::get('/attendance/start',[AttendanceController::class,'startAttendance'])->name('startAttendance');
+        Route::get('/attendance/end',[AttendanceController::class,'endAttendance'])->name('endAttendance');
+        Route::get('/attendance/{num}',[AttendanceController::class,'getAttendance'])->name('getAttendance');
+        Route::get('/rest/start',[RestController::class,'startRest'])->name('startRest');
+        Route::get('/rest/end',[RestController::class,'endRest'])->name('endRest');
     });
 
 

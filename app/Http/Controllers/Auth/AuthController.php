@@ -35,7 +35,7 @@ class AuthController extends Controller
         event(new Registered($user));
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME)->with('status','会員登録完了しました！');
 
     }
 
@@ -54,7 +54,7 @@ class AuthController extends Controller
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
 
-            return redirect()->route('getIndex')->with('login_success','ログイン成功しました！');
+            return redirect()->route('getIndex')->with('status','お疲れ様です！');
         }
         return back()->withErrors([
             'login_error' => 'メールアドレスかパスワードが間違っています。',

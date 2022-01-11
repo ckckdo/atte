@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ログイン</title>
-  <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/signin.css') }}">
+@extends('layouts.Authlayout')
+  @section('title','ログイン')
+  @section('content')
 
-
-  <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-</head>
-<body>
-  <form class="form-signin" method="post" action="{{ route('postLogin')}}">
+  <div class="container">
+    <form class="form-signin" method="post" action="{{ route('postLogin')}}">
     @csrf
-  <h1 class="h3 mb-3 font-weight-normal">ログイン</h1>
+  <h1 class="title-auth">ログイン</h1>
   @foreach ($errors->all() as $error)
       <ul class="alert alert-danger">
         <li>{{ $error }}</li>
@@ -32,16 +21,14 @@
           {{session('logout')}}
       </div>
   @endif
+      <div class="form-atte">
+          <input type="email" id="inputEmail" class="form-atte--input" name="email" placeholder="メールアドレス" autofocus>
+          <input type="password" id="inputPassword" class="form-atte--input" name="password" placeholder="パスワード">
+          <button class="btn-input" type="submit">ログイン</button>
+          <p>アカウントをお持ちでない方はこちらから</p>
+          <a class="btn-other" href="/register">会員登録</a>
+      </div>
+  </div>
+  </form>
 
-
-
-
-  <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" id="inputEmail" class="form-control" name="email" placeholder="メールアドレス" autofocus>
-  <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" id="inputPassword" class="form-control" name="password" placeholder="パスワード">
-  <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
-</form>
-
-</body>
-</html>
+@endsection
