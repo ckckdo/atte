@@ -19,7 +19,6 @@ class CreateAttendancesTable extends Migration
             $table->date('date')->nullable('true');
             $table->time('start_time')->nullable('true');
             $table->time('end_time')->nullable('true');
-            $table->time('attendance_time')->nullable('true');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

@@ -16,18 +16,13 @@ class RestController extends Controller
     public function startRest()
     {
         $user = Auth::user();
-
-        $startattendance = Attendance::where('user_id', $user->id)->latest()->first();
-
-        $timestamp = Rest::create([
-            'user_id' => $user->id,
-            'attendance_id' => $startattendance->id,
+        $startAttendance = Attendance::where('user_id', $user->id)->latest()->first();
+        $timestamp = Rest::where('attendance_id', $startAttendance->id)->latest()->first();
+        $timestamp->update([
             'start_time' => Carbon::now(),
-            'end_time' => 0,
-            'rest_time' => 0,
         ]);
 
-        return redirect()->back()->with('status', '休憩開始打刻が完了しました。');
+        return redirect()->back()->with('status', '休憩開始打刻が完了しました');
     }
 
     //休憩終了処理
@@ -36,13 +31,10 @@ class RestController extends Controller
         $user = Auth::user();
         $attendance = Attendance::where('user_id', $user->id)->latest()->first();
         $timestamp = Rest::where('attendance_id', $attendance->id)->latest()->first();
-        $end_rest = new carbon($timestamp->end_time);
-        $start_rest = new carbon($timestamp->start_time);
 
         $timestamp->update([
             'end_time' => Carbon::now(),
-            'rest_time' => $rest_time = (strtotime($end_rest) - strtotime($start_rest))
         ]);
-        return redirect()->back()->with('status', '休憩終了時間打刻が完了しました。');
+        return redirect()->back()->with('status', '休憩終了時間打刻が完了しました');
     }
 }

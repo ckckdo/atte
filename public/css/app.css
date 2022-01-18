@@ -4796,6 +4796,7 @@ textarea.form-control-lg {
 
 .pagination {
   display: flex;
+  justify-content: center;
   padding-left: 0;
   list-style: none;
 }

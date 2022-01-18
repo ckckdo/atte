@@ -2,9 +2,9 @@
         @section('navi')
         <nav style="display:inline-block;" class="flex my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="/">ホーム</a>
-            <form method="get" action="{{ route('getAttendance','date') }}" style="display:inline;">
+            <form method="get" action="{{ route('getAttendance',['num' => \Carbon\Carbon::today()->format("Y-m-d")]) }}" style="display:inline;">
                 @csrf
-                <a class="p-2 text-dark" href="route('getAttendance')" onclick="event.preventDefault();
+                <a class="p-2 text-dark" href="route('getAttendance',['num' => \Carbon\Carbon::today()->format("Y-m-d"))]" onclick="event.preventDefault();
             this.closest('form').submit();">{{ __('日付一覧') }}
             </form></a>
             <form method="POST" action="{{ route('postLogout') }}" style="display:inline;">
